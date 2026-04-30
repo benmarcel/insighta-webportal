@@ -52,7 +52,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   // Check session on mount
   useEffect(() => {
-    fetchSession();
+    const initializeAuth = async () => {
+      await fetchSession();
+    };
+    initializeAuth();
   }, [fetchSession]);
 
   const logout = useCallback(async () => {
