@@ -16,7 +16,9 @@ export default function Login() {
   }, [isAuthenticated, isLoading, navigate]);
 
   const handleLogin = () => {
-    window.location.href = `${BACKEND_URL}/api/v1/auth/login?source=web`;
+    const state = crypto.randomUUID(); // cryptographically random
+    sessionStorage.setItem("oauth_state", state); // keep it for post-redirect verification if needed
+    window.location.href = `${BACKEND_URL}/api/v1/auth/login?source=web&state=${state}`;
   };
 
   return (
@@ -28,7 +30,8 @@ export default function Login() {
       <div
         className="absolute inset-0 opacity-[0.03]"
         style={{
-          backgroundImage: "linear-gradient(#8b949e 1px, transparent 1px), linear-gradient(to right, #8b949e 1px, transparent 1px)",
+          backgroundImage:
+            "linear-gradient(#8b949e 1px, transparent 1px), linear-gradient(to right, #8b949e 1px, transparent 1px)",
           backgroundSize: "40px 40px",
         }}
       />
@@ -41,8 +44,18 @@ export default function Login() {
           {/* Logo */}
           <div className="flex justify-center mb-6">
             <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#3b82f6] to-[#6366f1] flex items-center justify-center shadow-lg shadow-blue-500/25">
-              <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714a2.25 2.25 0 001.591 2.25l4.5 1.5m0 0a2.25 2.25 0 002.25-2.25V7.5m-10.5 6l4.5 1.5m0 0l4.5-1.5" />
+              <svg
+                className="w-6 h-6 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2.5}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714a2.25 2.25 0 001.591 2.25l4.5 1.5m0 0a2.25 2.25 0 002.25-2.25V7.5m-10.5 6l4.5 1.5m0 0l4.5-1.5"
+                />
               </svg>
             </div>
           </div>
@@ -63,8 +76,18 @@ export default function Login() {
           >
             <GitHubIcon className="w-5 h-5 flex-shrink-0" />
             Continue with GitHub
-            <svg className="w-4 h-4 ml-auto text-[#4b5563] group-hover:text-[#8b949e] group-hover:translate-x-0.5 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            <svg
+              className="w-4 h-4 ml-auto text-[#4b5563] group-hover:text-[#8b949e] group-hover:translate-x-0.5 transition-all"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
             </svg>
           </button>
 
