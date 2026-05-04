@@ -35,7 +35,7 @@ export default function PrivateRoute({ allowedRoles }: PrivateRouteProps) {
   // Wait for the initial session check before making routing decisions
   if (isLoading) return <LoadingScreen />;
 
-  // Not authenticated → redirect to login, preserving the intended destination
+  // Not authenticated  redirect to login, preserving the intended destination
   if (!isAuthenticated) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }

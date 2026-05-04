@@ -16,9 +16,9 @@ export default function Login() {
   }, [isAuthenticated, isLoading, navigate]);
 
   const handleLogin = () => {
-    const state = crypto.randomUUID(); // cryptographically random
-    sessionStorage.setItem("oauth_state", state); // keep it for post-redirect verification if needed
-    window.location.href = `${BACKEND_URL}/api/v1/auth/login?source=web&state=${state}`;
+    // const state = crypto.randomUUID(); // cryptographically random
+    // sessionStorage.setItem("oauth_state", state); // keep it for post-redirect verification if needed
+    window.location.href = `${BACKEND_URL}/api/v1/auth/login?source=web`;
   };
 
   return (
@@ -43,7 +43,7 @@ export default function Login() {
         <div className="rounded-2xl border border-[#1f2937] bg-[#0d1117] p-8 shadow-2xl shadow-black/50">
           {/* Logo */}
           <div className="flex justify-center mb-6">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#3b82f6] to-[#6366f1] flex items-center justify-center shadow-lg shadow-blue-500/25">
+            <div className="w-12 h-12 rounded-xl bg-linear-to-br from-[#3b82f6] to-[#6366f1] flex items-center justify-center shadow-lg shadow-blue-500/25">
               <svg
                 className="w-6 h-6 text-white"
                 fill="none"
@@ -74,7 +74,7 @@ export default function Login() {
             onClick={handleLogin}
             className="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-xl bg-[#161b22] border border-[#30363d] text-[#e6edf3] font-medium text-sm hover:bg-[#1f2937] hover:border-[#484f58] active:scale-[0.98] transition-all duration-150 group"
           >
-            <GitHubIcon className="w-5 h-5 flex-shrink-0" />
+            <GitHubIcon className="w-5 h-5 shrink-0" />
             Continue with GitHub
             <svg
               className="w-4 h-4 ml-auto text-[#4b5563] group-hover:text-[#8b949e] group-hover:translate-x-0.5 transition-all"
